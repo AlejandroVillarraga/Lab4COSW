@@ -16,6 +16,12 @@
  */
 package edu.eci.cosw.jpa.sample;
 
+import edu.eci.cosw.jpa.sample.model.Cliente;
+import edu.eci.cosw.jpa.sample.model.ClienteId;
+import edu.eci.cosw.jpa.sample.model.PolizaAprobada;
+import edu.eci.cosw.jpa.sample.model.PolizaAprobadaId;
+import edu.eci.cosw.jpa.sample.model.TipoPoliza;
+import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -33,6 +39,18 @@ public class SimpleMainApp {
         SessionFactory sf=getSessionFactory();
         Session s=sf.openSession();
         Transaction tx=s.beginTransaction();
+        
+        
+        Cliente clientp = (Cliente) s.load(Cliente.class, new ClienteId(1,"cc"));
+        System.out.println(clientp.getNombre());
+        
+        Cliente client = new Cliente (new ClienteId(1070017379,"cc"),"Alejandro","Barrio Santa Cruz Cajica","3158823178");
+        PolizaAprobada pa = new PolizaAprobada(new PolizaAprobadaId(1070017379,"cc", 1),client, (TipoPoliza)s.load(TipoPoliza.class,1), new Date(10000), new Date(100000));
+        
+        s.saveOrUpdate(client);
+        s.saveOrUpdate(pa);
+        
+        
         
         tx.commit();       
         s.close();
