@@ -20,22 +20,22 @@ public class SimpleMainApp {
         Session s=sf.openSession();
         Transaction tx=s.beginTransaction();
         
-        Estudiante e1 = new Estudiante(2101751, "Alejandro"); 
-        Estudiante e2 = new Estudiante(2156894, "Daniel");
-        Curso c1 = new Curso(99999, "Construcción de Software", "COSW");
-        Curso c2 = new Curso(999990, "Habilidades gerenciales", "HGER");
-        c1.getEstudiantes().add(e1);
-        c1.getEstudiantes().add(e2);
-        c2.getEstudiantes().add(e1);
-        c2.getEstudiantes().add(e2);
-        e1.getCursos().add(c1);
-        e1.getCursos().add(c2);
-        e2.getCursos().add(c1);
-        e2.getCursos().add(c2);
-        s.saveOrUpdate(e1);
-        s.saveOrUpdate(e2);
-        s.saveOrUpdate(c1);
-        s.saveOrUpdate(c2);
+        Estudiante estud1 = new Estudiante(2101751, "Alejandro"); 
+        Estudiante estud2 = new Estudiante(2156894, "Daniel");
+        Curso curso1 = new Curso(99999999, "Construcción de Software", "COSW");
+        Curso curso2 = new Curso(99999990, "Habilidades gerenciales", "HGER");
+        curso1.getEstudiantes().add(estud1);
+        curso1.getEstudiantes().add(estud2);
+        curso2.getEstudiantes().add(estud1);
+        curso2.getEstudiantes().add(estud2);
+        estud1.getCursos().add(curso1);
+        estud1.getCursos().add(curso2);
+        estud2.getCursos().add(curso1);
+        estud2.getCursos().add(curso2);
+        s.saveOrUpdate(estud1);
+        s.saveOrUpdate(estud2);
+        s.saveOrUpdate(curso1);
+        s.saveOrUpdate(curso2);
         
         tx.commit(); 
         s.close();
